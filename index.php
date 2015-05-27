@@ -9,18 +9,13 @@
 *
 * Date: 27/05/15
 *
-*
 */
 
 //Set default timezone
 date_default_timezone_set('Europe/London');
 
-// if form is submitted 
-if ($_POST["submit"]) {
+function calcDiff($startDateTime,$endDateTime){
 
-	//Change string to time value
-	$startDateTime = strtotime($_POST["start-date"]);
-	$endDateTime = strtotime($_POST["end-date"]);
 	//Format date for returned message
 	$startDate = date("D d M Y",$startDateTime);
 	$endDate = date("D d M Y",$endDateTime);
@@ -33,6 +28,19 @@ if ($_POST["submit"]) {
 	$message = "Total time between " . $startDate . " and " . $endDate ." is: <br /><br />";
 	$message .= $calcDays . " Day(s)<br />" . $calcHours . " Hour(s)<br />";
 	$message .= $calcMinutes . " Minute(s)<br />" . $calcSeconds . " Second(s)<br />";
+	//Return message
+	return $message;
+
+}
+
+// if form is submitted 
+if ($_POST["submit"]) {
+
+	//Change string to time value
+	$startDateTime = strtotime($_POST["start-date"]);
+	$endDateTime = strtotime($_POST["end-date"]);
+	//Get calculations
+	$message = calcDiff($startDateTime,$endDateTime);
 
 }
 
